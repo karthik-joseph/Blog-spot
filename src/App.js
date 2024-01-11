@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+import Header from './components/Header';
+import BlogSpot from './components/screens/BlogSpot';
+import SinglePageBlog from './components/screens/SinglePageBlog';
+import Blog from './components/screens/Blog';
+import PageNotFound from './components/screens/PageNotFound';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <Router>
+      <Header />
+      <Routes>
+          <Route index path='/' element={<BlogSpot />} /> 
+          <Route path='/blog' element={<Blog />} />
+          <Route path='/singlepageblog' element={<SinglePageBlog />} />
+          <Route path='singlepageblog/:id' element={<SinglePageBlog />} />
+          <Route path='*' element={<PageNotFound />} />
+      </Routes>
+     </Router>  
   );
 }
 
